@@ -12,6 +12,12 @@ const routes: Array<RouteRecordRaw> = [
     name: "friends",
     component: () => import("@/views/FriendsView.vue"),
   },
+  {
+    path: "/friend/:id",
+    name: "Friend",
+    component: () => import("@/views/Friend.vue"),
+    props: true,
+  },
 ];
 
 const router = createRouter({

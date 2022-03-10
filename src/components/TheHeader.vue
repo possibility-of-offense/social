@@ -1,6 +1,49 @@
 <template>
   <header class="bs-1">
-    <HeaderSearchWrapper :logoB="logo"></HeaderSearchWrapper>
+    <div class="flex align-center" ref="mainDiv">
+      <!-- REFACTOR fix the positioning -->
+      <Icon>
+        <router-link to="/">
+          <svg
+            viewBox="0 0 36 36"
+            class="a8c37x1j ms05siws hwsy1cff b7h9ocf4"
+            fill="url(#jsc_s_r)"
+            height="40"
+            width="40"
+          >
+            <defs>
+              <linearGradient
+                x1="50%"
+                x2="50%"
+                y1="97.0782153%"
+                y2="0%"
+                id="jsc_s_r"
+              >
+                <stop offset="0%" stop-color="#0062E0"></stop>
+                <stop offset="100%" stop-color="#19AFFF"></stop>
+              </linearGradient>
+            </defs>
+            <path
+              d="M15 35.8C6.5 34.3 0 26.9 0 18 0 8.1 8.1 0 18 0s18 8.1 18 18c0 8.9-6.5 16.3-15 17.8l-1-.8h-4l-1 .8z"
+            ></path>
+            <path
+              class="p361ku9c white-svg"
+              d="M25 23l.8-5H21v-3.5c0-1.4.5-2.5 2.7-2.5H26V7.4c-1.3-.2-2.7-.4-4-.4-4.1 0-7 2.5-7 7v4h-4.5v5H15v12.7c1 .2 2 .3 3 .3s2-.1 3-.3V23h4z"
+            ></path></svg
+        ></router-link>
+      </Icon>
+      <HeaderSearchWrapper
+        v-clicked-outside="handleCloseDropdown"
+        :logoB="logo"
+        @click="showDropdown = !showDropdown"
+      ></HeaderSearchWrapper>
+      <div class="dr" v-if="showDropdown">
+        <HeaderSearchWrapperDropdown
+          :friends="friends"
+        ></HeaderSearchWrapperDropdown>
+      </div>
+    </div>
+
     <p class="filler">Filler</p>
     <HeaderMenu :items="menuItems"></HeaderMenu>
     <HeaderMisc></HeaderMisc>
@@ -8,20 +51,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, nextTick, ref, watchEffect } from "vue";
 
-import { MenuItem } from "@/types/types";
+import { MenuItem, PersonRequestGrid } from "@/types/types";
+
+import { useStore } from "@/store/index";
 
 // Components
 import HeaderSearchWrapper from "@/components/Header/HeaderSearchWrapper.vue";
 import HeaderMenu from "@/components/Header/HeaderMenu.vue";
 import HeaderMisc from "@/components/Header/HeaderMisc.vue";
+import HeaderSearchWrapperDropdown from "@/components/Header/HeaderSearchWrapperDropdown.vue";
 
 export default defineComponent({
   components: {
     HeaderSearchWrapper,
     HeaderMenu,
     HeaderMisc,
+    HeaderSearchWrapperDropdown,
   },
   props: {
     logo: {
@@ -51,8 +98,41 @@ export default defineComponent({
       },
     ]);
 
+    const showDropdown = ref(false);
+    const mainDiv = ref<HTMLElement | null>(null);
+
+    const store = useStore();
+    const friends = ref<Array<PersonRequestGrid>>([]);
+
+    watchEffect(
+      () => {
+        if (showDropdown.value) {
+          mainDiv.value!.classList.add("show-main-div");
+          friends.value = store.state.addedFriends;
+        } else {
+          mainDiv.value!.classList.remove("show-main-div");
+        }
+      },
+      {
+        flush: "post",
+      }
+    );
+
+    const handleCloseDropdown = () => {
+      nextTick(() => {
+        if (showDropdown.value) {
+          mainDiv.value!.classList.remove("show-main-div");
+          showDropdown.value = false;
+        }
+      });
+    };
+
     return {
       menuItems,
+      showDropdown,
+      mainDiv,
+      friends,
+      handleCloseDropdown,
     };
   },
 });
@@ -62,10 +142,41 @@ export default defineComponent({
 header {
   position: relative;
   background-color: #fff;
-  // padding: 15px;
-
   display: grid;
   grid-template-columns: 25% 50% 25%;
+  align-items: center;
+
+  &.bs-1 > div:first-child {
+    padding: 10px;
+
+    position: absolute;
+    z-index: 9999;
+    left: 0;
+    top: 50%;
+    // top: 0;
+    border-radius: 0 0 6px;
+    transform: translateY(-50%);
+    width: 320px;
+    cursor: pointer;
+
+    background-color: #fff;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    &.show-main-div {
+      top: 0;
+      transform: none;
+      box-shadow: 3px 3px 10px 0.2px rgba(0, 0, 0, 0.3);
+      border-radius: 0 0 10px;
+    }
+
+    .dr {
+      grid-column: 1 / -1;
+    }
+
+    // overflow: hidden;
+  }
 
   p.filler {
     pointer-events: none;

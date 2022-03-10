@@ -11,7 +11,21 @@ import TheHeader from "@/components/TheHeader.vue";
 
 export default defineComponent({
   components: { TheHeader },
-  setup() {},
+  setup() {
+    // LOGIC BACKUP CODE
+    // const handleCloseDropdown = () => {
+    //   nextTick(() => {
+    //     // if (showDropdown.value) {
+    //     //   showDropdown.value = false;
+    //     // }
+    //   });
+    //   console.log(123);
+    // };
+
+    return {
+      // handleCloseDropdown,
+    };
+  },
 });
 </script>
 
