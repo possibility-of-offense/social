@@ -135,3 +135,7 @@ a {
 .caret-color-transparent {
   caret-color: transparent;
 }
+
+.remove {
+  display: none;
+}

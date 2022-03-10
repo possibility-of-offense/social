@@ -3,7 +3,7 @@ import { RootActionEnums } from "./action-enums";
 import { RootMutationEnums } from "./mutation-enums";
 import { state } from "./index";
 import { Mutations } from "./mutations-types";
-import { Post } from "@/types/types";
+import { PersonRequestGrid, FriendsGrid, Post } from "@/types/types";
 
 type definedActionContext = {
   commit<K extends keyof Mutations>(
@@ -22,6 +22,14 @@ export interface Actions {
     payload: Post
   ): void;
   [RootActionEnums.RESET_MOOD]({ commit }: definedActionContext): void;
+  [RootActionEnums.ADDING_FRIENDS](
+    { commit }: definedActionContext,
+    payload: FriendsGrid
+  ): void;
+  [RootActionEnums.REMOVE_FROM_FRIENDS](
+    { commit }: definedActionContext,
+    payload: string
+  ): void;
 }
 
 export const actions: ActionTree<state, state> & Actions = {
@@ -36,5 +44,11 @@ export const actions: ActionTree<state, state> & Actions = {
   },
   [RootActionEnums.RESET_MOOD]({ commit }) {
     commit(RootMutationEnums.RESET_MOOD);
+  },
+  [RootActionEnums.ADDING_FRIENDS]({ commit }, payload) {
+    commit(RootMutationEnums.ADDING_FRIENDS, payload);
+  },
+  [RootActionEnums.REMOVE_FROM_FRIENDS]({ commit }, payload) {
+    commit(RootMutationEnums.REMOVE_FROM_FRIENDS, payload);
   },
 };

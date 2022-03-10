@@ -20,7 +20,7 @@ export default defineComponent({
   name: "HeaderSearchWrapperForm",
   setup(_, context) {
     const emitShowDropdown = () => {
-      context.emit("showD", true);
+      context.emit("showD");
     };
 
     return {

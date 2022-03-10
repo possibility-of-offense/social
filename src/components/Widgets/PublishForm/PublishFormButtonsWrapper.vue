@@ -3,7 +3,7 @@
     <div class="p-btn">
       <Button>
         <a
-          @click.prevent="$emit('emitShowModalForm')"
+          @click.prevent="handlePublishClick"
           href="#"
           class="flex align-center justify-space-between"
         >
@@ -88,6 +88,8 @@
 import { computed, defineComponent } from "vue";
 import { useStore } from "@/store/index";
 
+import { checkIfEmpty } from "@/composables/fns";
+
 // Components
 import Button from "../../General/Button.vue";
 import Icon from "../../General/Icon.vue";
@@ -98,7 +100,7 @@ export default defineComponent({
     Button,
     Icon,
   },
-  setup() {
+  setup(_, context) {
     const store = useStore();
     const getMood = computed(() => {
       return store.state.mood;
@@ -108,9 +110,19 @@ export default defineComponent({
       return require("../../../assets/" + n + ".png");
     };
 
+    // open the form if the mood is not empty
+    const handlePublishClick = () => {
+      if (getMood.value && checkIfEmpty(getMood.value, "name")) {
+        context.emit("emitShowModalForm");
+      } else {
+        context.emit("emitShowModalMood");
+      }
+    };
+
     return {
       getMood,
       getImageUrl,
+      handlePublishClick,
     };
   },
 });

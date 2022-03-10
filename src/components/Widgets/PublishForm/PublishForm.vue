@@ -50,7 +50,7 @@
         v-if="showModalMood"
       >
         <PublishFormMoods
-          @clickedIcon="showModalMood = false"
+          @clickedIcon="handleCloseModal"
           class="modal-header__moods"
           :moods="moods"
         ></PublishFormMoods>
@@ -112,6 +112,12 @@ export default defineComponent({
       showModalMood.value = false;
     };
 
+    // Close Modal
+    const handleCloseModal = () => {
+      showModalMood.value = false;
+      showModalForm.value = true;
+    };
+
     // Moods
     const moods = ref<Array<MoodsIcons>>([
       { name: "Happy", icon: "happy" },
@@ -148,7 +154,7 @@ export default defineComponent({
       postBody.value = "";
     };
 
-    const addListener = function (e) {
+    const addListener = function (e: KeyboardEvent) {
       const key = e.key;
       if (key === "Escape") {
         showModalForm.value = !showModalForm.value;
@@ -172,6 +178,7 @@ export default defineComponent({
       handleCloseAnyModal,
       postBody,
       handleSubmit,
+      handleCloseModal,
     };
   },
 });

@@ -45,3 +45,7 @@ export interface PersonRequestGrid {
   name: string;
   image: string;
 }
+
+export interface FriendsGrid extends PersonRequestGrid {
+  dateAdded: string;
+}
