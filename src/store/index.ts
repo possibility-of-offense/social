@@ -2,13 +2,15 @@ import { createStore, Store as VuexStore } from "vuex";
 import { mutations, Mutations } from "./mutations-types";
 import { actions, Actions } from "./action-types";
 
-import { PersonRequestGrid, FriendsGrid } from "@/types/types";
+import { PersonRequestGrid, FriendsGrid, FriendDetails } from "@/types/types";
 
 export interface state {
   mood: { name?: string; icon?: string };
   posts: { name: string; mood: { name: string; icon: string } }[];
   friends: PersonRequestGrid[];
   addedFriends: FriendsGrid[];
+  // friendsDetails: FriendDetails[];
+  friendsDetails: any;
 }
 
 export const store = createStore({
@@ -48,7 +50,7 @@ export const store = createStore({
           "https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=699&q=80",
       },
       {
-        name: "Jore Gyzo",
+        name: "Ibrahim",
         image:
           "https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
       },
@@ -59,6 +61,159 @@ export const store = createStore({
       },
     ],
     addedFriends: [],
+    friendsDetails: {
+      // {
+      //   name: "Gosho",
+      //   image:
+      //     "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+      //   bannerImage:
+      //     "https://images.unsplash.com/photo-1645645271595-c40a86fd1cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80",
+      // },
+      gosho: {
+        name: "Gosho",
+        job: "Developer",
+        image:
+          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+        bannerImage:
+          "https://images.unsplash.com/photo-1645645271595-c40a86fd1cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80",
+        posts: [
+          {
+            name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, voluptates incidunt. Debitis voluptates quod sint reprehenderit officia consectetur veniam id, odit voluptas? Quibusdam assumenda magni fuga numquam mollitia libero natus ad, autem aliquam minus hic. Possimus optio ipsum animi commodi praesentium doloremque modi iusto, quaerat cupiditate exercitationem a, laboriosam eum.        ",
+            mood: {
+              name: "Sad",
+              icon: "sad",
+            },
+          },
+          {
+            name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, voluptates incidunt. Debitis voluptates quod sint reprehenderit officia consectetur veniam id, odit voluptas? Quibusdam assumenda magni fuga numquam mollitia libero natus ad, autem aliquam minus hic. Possimus optio ipsum animi commodi praesentium doloremque modi iusto, quaerat cupiditate exercitationem a, laboriosam eum.        ",
+            mood: {
+              name: "Happy",
+              icon: "happy",
+            },
+          },
+        ],
+      },
+      nikolai: {
+        name: "Nikolai",
+        job: "Developer",
+        image:
+          "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80",
+        bannerImage:
+          "https://images.unsplash.com/photo-1645645271595-c40a86fd1cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80",
+        posts: [
+          {
+            name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, voluptates incidunt. Debitis voluptates quod sint reprehenderit officia consectetur veniam id, odit voluptas? Quibusdam assumenda magni fuga numquam mollitia libero natus ad, autem aliquam minus hic. Possimus optio ipsum animi commodi praesentium doloremque modi iusto, quaerat cupiditate exercitationem a, laboriosam eum.        ",
+            mood: {
+              name: "Sad",
+              icon: "sad",
+            },
+          },
+          {
+            name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, voluptates incidunt. Debitis voluptates quod sint reprehenderit officia consectetur veniam id, odit voluptas? Quibusdam assumenda magni fuga numquam mollitia libero natus ad, autem aliquam minus hic. Possimus optio ipsum animi commodi praesentium doloremque modi iusto, quaerat cupiditate exercitationem a, laboriosam eum.        ",
+            mood: {
+              name: "Happy",
+              icon: "happy",
+            },
+          },
+        ],
+      },
+      mihaela: {
+        name: "Mihaela",
+        job: "Developer",
+        image:
+          "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        bannerImage:
+          "https://images.unsplash.com/photo-1645645271595-c40a86fd1cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80",
+        posts: [
+          {
+            name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, voluptates incidunt. Debitis voluptates quod sint reprehenderit officia consectetur veniam id, odit voluptas? Quibusdam assumenda magni fuga numquam mollitia libero natus ad, autem aliquam minus hic. Possimus optio ipsum animi commodi praesentium doloremque modi iusto, quaerat cupiditate exercitationem a, laboriosam eum.        ",
+            mood: {
+              name: "Sad",
+              icon: "sad",
+            },
+          },
+          {
+            name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, voluptates incidunt. Debitis voluptates quod sint reprehenderit officia consectetur veniam id, odit voluptas? Quibusdam assumenda magni fuga numquam mollitia libero natus ad, autem aliquam minus hic. Possimus optio ipsum animi commodi praesentium doloremque modi iusto, quaerat cupiditate exercitationem a, laboriosam eum.        ",
+            mood: {
+              name: "Happy",
+              icon: "happy",
+            },
+          },
+        ],
+      },
+      nikolina: {
+        name: "Nikolina",
+        job: "Developer",
+        image:
+          "https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=699&q=80",
+        bannerImage:
+          "https://images.unsplash.com/photo-1645645271595-c40a86fd1cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80",
+        posts: [
+          {
+            name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, voluptates incidunt. Debitis voluptates quod sint reprehenderit officia consectetur veniam id, odit voluptas? Quibusdam assumenda magni fuga numquam mollitia libero natus ad, autem aliquam minus hic. Possimus optio ipsum animi commodi praesentium doloremque modi iusto, quaerat cupiditate exercitationem a, laboriosam eum.        ",
+            mood: {
+              name: "Sad",
+              icon: "sad",
+            },
+          },
+          {
+            name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, voluptates incidunt. Debitis voluptates quod sint reprehenderit officia consectetur veniam id, odit voluptas? Quibusdam assumenda magni fuga numquam mollitia libero natus ad, autem aliquam minus hic. Possimus optio ipsum animi commodi praesentium doloremque modi iusto, quaerat cupiditate exercitationem a, laboriosam eum.        ",
+            mood: {
+              name: "Happy",
+              icon: "happy",
+            },
+          },
+        ],
+      },
+      ibrahim: {
+        name: "Ibrahim",
+        job: "Developer",
+        image:
+          "https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+        bannerImage:
+          "https://images.unsplash.com/photo-1645645271595-c40a86fd1cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80",
+        posts: [
+          {
+            name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, voluptates incidunt. Debitis voluptates quod sint reprehenderit officia consectetur veniam id, odit voluptas? Quibusdam assumenda magni fuga numquam mollitia libero natus ad, autem aliquam minus hic. Possimus optio ipsum animi commodi praesentium doloremque modi iusto, quaerat cupiditate exercitationem a, laboriosam eum.        ",
+            mood: {
+              name: "Sad",
+              icon: "sad",
+            },
+          },
+          {
+            name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, voluptates incidunt. Debitis voluptates quod sint reprehenderit officia consectetur veniam id, odit voluptas? Quibusdam assumenda magni fuga numquam mollitia libero natus ad, autem aliquam minus hic. Possimus optio ipsum animi commodi praesentium doloremque modi iusto, quaerat cupiditate exercitationem a, laboriosam eum.        ",
+            mood: {
+              name: "Happy",
+              icon: "happy",
+            },
+          },
+        ],
+      },
+      krasimir: {
+        name: "Krasimir",
+        job: "Developer",
+        image:
+          "https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80",
+        bannerImage:
+          "https://images.unsplash.com/photo-1645645271595-c40a86fd1cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80",
+        posts: [
+          {
+            name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, voluptates incidunt. Debitis voluptates quod sint reprehenderit officia consectetur veniam id, odit voluptas? Quibusdam assumenda magni fuga numquam mollitia libero natus ad, autem aliquam minus hic. Possimus optio ipsum animi commodi praesentium doloremque modi iusto, quaerat cupiditate exercitationem a, laboriosam eum.        ",
+            mood: {
+              name: "Sad",
+              icon: "sad",
+            },
+          },
+          {
+            name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, voluptates incidunt. Debitis voluptates quod sint reprehenderit officia consectetur veniam id, odit voluptas? Quibusdam assumenda magni fuga numquam mollitia libero natus ad, autem aliquam minus hic. Possimus optio ipsum animi commodi praesentium doloremque modi iusto, quaerat cupiditate exercitationem a, laboriosam eum.        ",
+            mood: {
+              name: "Happy",
+              icon: "happy",
+            },
+          },
+        ],
+      },
+    },
   } as state,
   mutations,
   actions,

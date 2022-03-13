@@ -5,7 +5,7 @@
       class="publish-form__search"
     ></PublishFormSearchWrapper>
 
-    <div class="separator"></div>
+    <Separator></Separator>
     <PublishFormButtonsWrapper
       @emitShowModalMood="showModalMood = true"
       @emitShowModalForm="showModalForm = true"
@@ -24,7 +24,7 @@
             &times;
           </button>
         </div>
-        <div class="separator"></div>
+        <Separator></Separator>
         <div class="modal-header__form">
           <form @submit.prevent="handleSubmit">
             <label for="form-text">Type something</label>
@@ -36,7 +36,7 @@
               @keydown.enter="handleSubmit"
             ></textarea>
 
-            <div class="separator"></div>
+            <Separator></Separator>
             <Button>
               <button class="primary-btn">Publish</button>
             </Button>
@@ -80,6 +80,7 @@ import PublishFormButtonsWrapper from "./PublishFormButtonsWrapper.vue";
 import PublishFormMoods from "./PublishFormMoods.vue";
 import Modal from "@/components/General/Modal.vue";
 import Button from "@/components/General/Button.vue";
+import Separator from "@/components/General/Separator.vue";
 
 export default defineComponent({
   name: "PublishForm",
@@ -89,6 +90,7 @@ export default defineComponent({
     PublishFormMoods,
     Modal,
     Button,
+    Separator,
   },
   setup() {
     // Modal Form

@@ -7,7 +7,7 @@
     ></div> -->
     <PublishForm></PublishForm>
 
-    <div class="separator"></div>
+    <Separator></Separator>
 
     <PostWrapper :posts="getPosts"> </PostWrapper>
   </div>
@@ -21,12 +21,14 @@ import { useStore } from "@/store/index";
 // Components
 import PublishForm from "@/components/Widgets/PublishForm/PublishForm.vue";
 import PostWrapper from "@/components/Widgets/Posts/PostWrapper.vue";
+import Separator from "@/components/General/Separator.vue";
 
 export default defineComponent({
   name: "HomeView",
   components: {
     PublishForm,
     PostWrapper,
+    Separator,
   },
   setup() {
     const store = useStore();

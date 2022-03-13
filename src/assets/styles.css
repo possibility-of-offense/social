@@ -36,9 +36,11 @@ a {
 .bs-2 {
   box-shadow: 0 3px 5px 0.3px rgba(0, 0, 0, 0.2);
 }
-
 .bs-3 {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.bs-4 {
+  box-shadow: 0 6px 7px rgba(0, 0, 0, 0.8);
 }
 
 /* Svg */
@@ -121,12 +123,24 @@ a {
 }
 
 .primary-btn {
-  background-color: #1b74e4;
+  background-color: rgb(27, 116, 228);
   border: none;
   width: 100%;
   padding: 10px;
   border-radius: 5px;
   color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.secondary-btn {
+  background-color: #e4e6eb;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  color: #333;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;

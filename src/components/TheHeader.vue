@@ -62,6 +62,7 @@ import HeaderSearchWrapper from "@/components/Header/HeaderSearchWrapper.vue";
 import HeaderMenu from "@/components/Header/HeaderMenu.vue";
 import HeaderMisc from "@/components/Header/HeaderMisc.vue";
 import HeaderSearchWrapperDropdown from "@/components/Header/HeaderSearchWrapperDropdown.vue";
+import Icon from "@/components/General/Icon.vue";
 
 export default defineComponent({
   components: {
@@ -69,6 +70,7 @@ export default defineComponent({
     HeaderMenu,
     HeaderMisc,
     HeaderSearchWrapperDropdown,
+    Icon,
   },
   props: {
     logo: {

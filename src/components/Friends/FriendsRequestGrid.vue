@@ -10,7 +10,7 @@
 
   <template v-if="people.length">
     <br />
-    <div class="separator"></div>
+    <Separator></Separator>
     <br />
   </template>
 
@@ -41,10 +41,11 @@ import { useRouter } from "vue-router";
 // Components
 import FriendsRequestGridItem from "./FriendsRequestGridItem.vue";
 import Alert from "@/components/General/Alert.vue";
+import Separator from "@/components/General/Separator.vue";
 
 export default defineComponent({
   name: "FriendsRequestGrid",
-  components: { FriendsRequestGridItem, Alert },
+  components: { FriendsRequestGridItem, Alert, Separator },
   setup() {
     const store = useStore();
     const people = ref<Array<PersonRequestGrid>>([]);
@@ -106,7 +107,7 @@ export default defineComponent({
 
     const router = useRouter();
     const handleSeeFriend = (p: PersonRequestGrid) => {
-      router.push({ name: "Friend", params: { id: p.name } });
+      router.push({ name: "Friend", params: { id: p.name.split(" ")[0] } });
     };
 
     return {

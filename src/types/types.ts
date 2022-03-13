@@ -49,3 +49,7 @@ export interface PersonRequestGrid {
 export interface FriendsGrid extends PersonRequestGrid {
   dateAdded: string;
 }
+
+export interface FriendDetails extends PersonRequestGrid {
+  bannerImage: string;
+}

@@ -5,16 +5,20 @@
     >
       <div class="flex align-center">
         <Image>
-          <router-link to="/">
-            <img src="../../../assets/ventsi.jpg" alt=""
-          /></router-link>
+          <router-link :to="{ name: 'Friend', params: { id: person.id } }">
+            <img
+              v-if="person.name !== 'Ventsislav'"
+              :src="person.image"
+              alt=""
+            />
+            <img v-else src="../../../assets/ventsi.jpg" />
+          </router-link>
         </Image>
         <div class="mood-wrapper">
-          <h5>Ventsislav</h5>
+          <h5>{{ person.name }}</h5>
         </div>
       </div>
       <div class="icon-wrapper hover-bg-gray-1">
-        <!-- TODO add some dropdown funcionality -->
         <Icon>
           <svg
             viewBox="0 0 20 20"
@@ -32,7 +36,7 @@
       </div>
     </div>
 
-    <div class="separator"></div>
+    <Separator></Separator>
 
     <PostWrapperItemBody
       :post="post"
@@ -49,13 +53,18 @@ import { Post } from "@/types/types";
 import Image from "@/components/General/Image.vue";
 import Icon from "@/components/General/Icon.vue";
 import PostWrapperItemBody from "@/components/Widgets/Posts/PostWrapperItemBody.vue";
+import Separator from "@/components/General/Separator.vue";
 
 export default defineComponent({
   name: "PostWrapperItem",
-  components: { Image, Icon, PostWrapperItemBody },
+  components: { Image, Icon, PostWrapperItemBody, Separator },
   props: {
     post: {
       type: Object as PropType<Post>,
+    },
+    person: {
+      type: Object,
+      default: {},
     },
   },
   setup() {
@@ -83,6 +92,8 @@ export default defineComponent({
     img {
       border-radius: 50%;
       width: 35px;
+      height: 35px;
+      object-fit: cover;
     }
 
     h5 {

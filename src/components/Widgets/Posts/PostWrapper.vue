@@ -1,7 +1,15 @@
 <template>
   <div class="post-wrapper" v-if="Array.isArray(posts) && posts.length">
     <div v-for="(post, ind) in posts" :key="ind">
-      <PostWrapperItem :post="post"> </PostWrapperItem>
+      <PostWrapperItem
+        :person="{
+          name: 'Ventsislav',
+          image: post.image,
+          id: post.name.split(' ')[0].toLowerCase(),
+        }"
+        :post="post"
+      >
+      </PostWrapperItem>
     </div>
   </div>
 </template>
