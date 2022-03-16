@@ -12,7 +12,15 @@
         @click="handleAddFriend(person)"
         class="primary-btn"
         style="font-size: 14px"
-        >Add friend</Button
+        >Add person</Button
+      >
+
+      <Button
+        v-if="!person.dateAdded"
+        @click="handleSeePerson(person)"
+        class="secondary-btn bs-3"
+        style="font-size: 14px; margin-top: 10px"
+        >See Person</Button
       >
 
       <Button
@@ -28,6 +36,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType, toRef } from "vue";
+import { useRouter } from "vue-router";
 
 import { FriendsGrid } from "@/types/types";
 
@@ -62,6 +71,17 @@ export default defineComponent({
       }
     };
 
+    // See person
+    const router = useRouter();
+    const handleSeePerson = (person: FriendsGrid | undefined) => {
+      if (person) {
+        router.push({
+          name: "Friend",
+          params: { id: person.name.split(" ")[0].toLowerCase() },
+        });
+      }
+    };
+
     const formatedDate = computed(() => {
       if (propRef.value && propRef.value.dateAdded) {
         const d = new Date(propRef.value.dateAdded);
@@ -72,6 +92,7 @@ export default defineComponent({
     return {
       handleAddFriend,
       handleSeeFriend,
+      handleSeePerson,
       formatedDate,
     };
   },

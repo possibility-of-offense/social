@@ -12,8 +12,6 @@ app.directive("clicked-outside", {
       const trg = event.target as HTMLElement;
 
       if (!(el === event.target || el.contains(event.target))) {
-        console.log(binding);
-
         binding.value();
       }
     };

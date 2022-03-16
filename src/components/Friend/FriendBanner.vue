@@ -12,6 +12,17 @@
         </Image>
         <div class="name">
           <h2>{{ person.name }}</h2>
+          <template v-if="isFriend">
+            <Button class="success-btn bs-2"> Friend </Button>
+          </template>
+          <template v-else>
+            <Button
+              @click="handleAddPersonToFriends"
+              style="margin-top: 7px"
+              class="secondary-btn bs-2"
+              >Add person to friends</Button
+            >
+          </template>
         </div>
 
         <div class="actions">
@@ -33,12 +44,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent, reactive, toRef } from "vue";
+
+import { useStore } from "@/store/index";
 
 // Components
 import Image from "@/components/General/Image.vue";
 import Button from "@/components/General/Button.vue";
 import Separator from "@/components/General/Separator.vue";
+import { RootActionEnums } from "@/store/action-enums";
+import { FriendsGrid } from "@/types/types";
 
 export default defineComponent({
   name: "FriendBanner",
@@ -52,8 +67,64 @@ export default defineComponent({
     Button,
     Separator,
   },
-  setup() {
-    return {};
+  setup(props) {
+    const store = useStore();
+    const propRef = toRef(props, "person");
+
+    const isFriend = computed(() => {
+      if (propRef.value) {
+        const found = store.state.addedFriends.find(
+          (f) => f.name === propRef.value!.name
+        );
+        if (found) {
+          return true;
+        }
+      }
+    });
+
+    function hasKey<O>(obj: O, key: any): key is keyof O {
+      return key in obj;
+    }
+
+    // Add to friends
+    const handleAddPersonToFriends = () => {
+      type FriendNoPost = {
+        image: string;
+        bannerImage: string;
+        job: string;
+        name: string;
+      };
+
+      const obj: FriendNoPost = {
+        image: "",
+        bannerImage: "",
+        job: "",
+        name: "",
+      };
+
+      for (let key in propRef.value) {
+        if (key !== "posts") {
+          if (hasKey(obj, key)) {
+            obj[key] = propRef.value[key];
+          }
+        }
+      }
+
+      const removePosts = {
+        ...obj,
+        dateAdded: new Date().toString(),
+      };
+
+      console.log(propRef.value);
+
+      store.dispatch(RootActionEnums.REMOVE_FROM_FRIENDS, propRef.value!.name);
+      store.dispatch(RootActionEnums.ADDING_FRIENDS, removePosts);
+    };
+
+    return {
+      isFriend,
+      handleAddPersonToFriends,
+    };
   },
 });
 </script>

@@ -9,7 +9,6 @@ export interface state {
   posts: { name: string; mood: { name: string; icon: string } }[];
   friends: PersonRequestGrid[];
   addedFriends: FriendsGrid[];
-  // friendsDetails: FriendDetails[];
   friendsDetails: any;
 }
 
@@ -62,13 +61,6 @@ export const store = createStore({
     ],
     addedFriends: [],
     friendsDetails: {
-      // {
-      //   name: "Gosho",
-      //   image:
-      //     "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-      //   bannerImage:
-      //     "https://images.unsplash.com/photo-1645645271595-c40a86fd1cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80",
-      // },
       gosho: {
         name: "Gosho",
         job: "Developer",
